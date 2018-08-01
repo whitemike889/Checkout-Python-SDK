@@ -1,0 +1,6 @@
+---
+projectName: pythonSDK
+language: python
+sourcePath: pythonsdk
+testPath: tests
+apiVersioning: false
