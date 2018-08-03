@@ -1,13 +1,12 @@
 import os
 
-from braintreehttp import Environment
-from pythonrestsdk.core import PythonRestSdkHttpClient
+from pythonrestsdk.core import PythonRestSdkHttpClient, PythonRestSdkEnvironment
 from paypal_authentication_token import PayPalAuthenticationToken
 
 
 class Skeleton(object):
     def __init__(self):
-        environment = Environment(os.environ["BASE_URL"])
+        environment = PythonRestSdkEnvironment(os.environ["BASE_URL"])
         self.client = PythonRestSdkHttpClient(environment)
 
     def authToken(self):

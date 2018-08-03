@@ -2,6 +2,5 @@ import braintreehttp
 
 class PythonRestSdkEnvironment(braintreehttp.Environment):
 
-    def base_url(self):
-        # braintreehttp.Environment.__init__(self, YOUR_API_BASE_URL)
-        raise NotImplementedError()
+    def base_url(self, base_url):
+        braintreehttp.Environment.__init__(self, base_url)
