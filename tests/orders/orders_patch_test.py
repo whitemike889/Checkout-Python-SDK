@@ -1,6 +1,6 @@
 import unittest
 import json
-from pythonsdk.orders import OrdersPatchRequest
+from pythonrestsdk.orders import OrdersPatchRequest
 from tests.test_harness import TestHarness
 
 class OrdersPatchTest(TestHarness):

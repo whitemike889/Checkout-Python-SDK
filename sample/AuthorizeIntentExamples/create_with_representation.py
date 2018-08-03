@@ -1,6 +1,6 @@
 import unittest
 import json
-from pythonsdk.orders import OrdersCreateRequest
+from pythonrestsdk.orders import OrdersCreateRequest
 from sample.skeleton import Skeleton
 import os
 

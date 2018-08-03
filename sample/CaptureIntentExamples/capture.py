@@ -1,5 +1,5 @@
 import os
-from pythonsdk.orders import OrdersCaptureRequest
+from pythonrestsdk.orders import OrdersCaptureRequest
 from sample.skeleton import Skeleton
 
 

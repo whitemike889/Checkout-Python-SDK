@@ -1,6 +1,6 @@
 import unittest
 import json
-from paymentspythonsdk.payments import AuthorizationsReauthorizeRequest
+from paymentspythonrestsdk.payments import AuthorizationsReauthorizeRequest
 from tests.test_harness import TestHarness
 
 class AuthorizationsReauthorizeTest(TestHarness):

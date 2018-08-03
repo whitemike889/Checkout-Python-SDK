@@ -1,6 +1,6 @@
 import unittest
 import json
-from pythonsdk.payments import AuthorizationsCaptureRequest
+from pythonrestsdk.payments import AuthorizationsCaptureRequest
 from tests.test_harness import TestHarness
 
 class AuthorizationsCaptureTest(TestHarness):
