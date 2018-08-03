@@ -113,7 +113,7 @@ class CreateWithoutRepresentation(Skeleton):
 
     def create_order(self, debug=False):
         request = OrdersCreateRequest()
-        request.authorization(os.environ.get('PAYPAL_AUTHENTICATION_TOKEN'))
+        request.authorization('Bearer ' + self.authToken())
         request.request_body(self.build_request_body())
         response = self.client.execute(request)
         if debug:

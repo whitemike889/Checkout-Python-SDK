@@ -11,7 +11,7 @@ class CreateError(Skeleton):
         """
         body = """{}"""
         request = OrdersCreateRequest()
-        request.authorization(os.environ.get('PAYPAL_AUTHENTICATION_TOKEN'))
+        request.authorization('Bearer ' + self.authToken)
         request.request_body(json.loads(body))
         print "Request Body:", body, "\n"
         print "Response:"
@@ -53,7 +53,7 @@ class CreateError(Skeleton):
         """
         body = """\n{\n\t"intent": "INVALID",\n\t"purchase_units": [\n\t\t{"amount": \n\t\t\t{\n\t\t\t\t"currency_code": "USD",\n\t\t\t\t"value": "100.00"\n\t\t\t}\n\t\t}\n\t]\n}"""
         request = OrdersCreateRequest()
-        request.authorization(os.environ.get('PAYPAL_AUTHENTICATION_TOKEN'))
+        request.authorization('Bearer ' + self.authToken)
         request.request_body(json.loads(body))
         print "Request Body:", body, "\n"
         print "Response:"

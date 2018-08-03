@@ -12,7 +12,7 @@ class Authorize(Skeleton):
 
     def authorize_order(self, order_id, debug=False):
         request = OrdersAuthorizeRequest(order_id)
-        request.authorization(os.environ.get('PAYPAL_AUTHENTICATION_TOKEN'))
+        request.authorization('Bearer ' + self.authToken())
         request.request_body(self.build_request_body())
         response = self.client.execute(request)
         if debug:

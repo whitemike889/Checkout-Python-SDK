@@ -23,7 +23,7 @@ class AuthorizationsCaptureRequest:
         self.body = None
 
     def authorization(self, authorization_token):
-        self.headers['Authorization'] = 'Bearer ' + str(authorization_token)
+        self.headers['Authorization'] = str(authorization_token)
 
     def pay_pal_request_id(self, pay_pal_request_id):
         self.headers["PayPal-Request-Id"] = str(pay_pal_request_id)

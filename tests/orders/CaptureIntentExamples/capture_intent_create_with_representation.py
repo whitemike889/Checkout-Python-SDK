@@ -112,7 +112,7 @@ class CaptureIntentCreateWithRepresentation(TestHarness):
 
     def testOrdersCreateTest(self):
         request = OrdersCreateRequest()
-        request.authorization(os.environ.get('PAYPAL_AUTHENTICATION_TOKEN'))
+        request.authorization('Bearer ' + self.authToken)
         request.prefer('return=representation')
         request.request_body(self.build_request_body())
         response = self.client.execute(request)

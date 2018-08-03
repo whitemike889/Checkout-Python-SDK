@@ -10,7 +10,7 @@ class AuthorizeIntentAuthorizeOrder(TestHarness):
     def testOrdersAuthorizeTest(self):
         order_id = '68461143JU904713W'
         request = OrdersAuthorizeRequest(order_id)
-        request.authorization(os.environ.get('PAYPAL_AUTHENTICATION_TOKEN'))
+        request.authorization('Bearer ' + self.authToken)
         request.request_body(self.build_request_body())
         response = self.client.execute(request)
         print(response.result)

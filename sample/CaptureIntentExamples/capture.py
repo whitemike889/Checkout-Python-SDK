@@ -6,7 +6,7 @@ from sample.skeleton import Skeleton
 class Capture(Skeleton):
     def capture_order(self, order_id, debug=False):
         request = OrdersCaptureRequest(order_id)
-        request.authorization(os.environ.get('PAYPAL_AUTHENTICATION_TOKEN'))
+        request.authorization('Bearer ' + self.authToken())
         response = self.client.execute(request)
         if debug:
             print 'Status Code: ', response.status_code

@@ -7,7 +7,7 @@ class CaptureIntentCaptureTest(TestHarness):
     def testOrdersCaptureTest(self):
         order_id = '0Y879375GR9684828'
         request = OrdersCaptureRequest(order_id)
-        request.authorization(os.environ.get('PAYPAL_AUTHENTICATION_TOKEN'))
+        request.authorization('Bearer ' + self.authToken)
         response = self.client.execute(request)
         print 'Status Code: ', response.status_code
         print 'Status: ', response.result.status
