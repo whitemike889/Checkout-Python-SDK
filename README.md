@@ -36,7 +36,7 @@ try:
     # Call API with your client and get a response for your call
     response = client.execute(request);  
     
-    # If call returns body in response, you can get the deserialized version by calling result() on the response
+    # If call returns body in response, you can get the deserialized version from the result attribute of the response
     order = response.result;
 except IOError as ioe:
     if isinstance(ioe, HttpError):
@@ -60,7 +60,7 @@ try:
     # Call API with your client and get a response for your call
     response = client.execute(request);  
     
-    # If call returns body in response, you can get the deserialized version by calling result() on the response
+    # If call returns body in response, you can get the deserialized version from the result attribute of the response
     order = response.result;
 except IOError as ioe:
     if isinstance(ioe, HttpError):
