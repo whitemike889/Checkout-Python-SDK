@@ -1,6 +1,6 @@
 import unittest
 import json
-from paymentspythonsdk.payments import RefundsGetRequest
+from paymentspythonrestsdk.payments import RefundsGetRequest
 from tests.test_harness import TestHarness
 
 class RefundsGetTest(TestHarness):

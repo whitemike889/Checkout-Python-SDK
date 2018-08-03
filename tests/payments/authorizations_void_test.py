@@ -1,6 +1,6 @@
 import unittest
 import json
-from paymentspythonsdk.payments import AuthorizationsVoidRequest
+from paymentspythonrestsdk.payments import AuthorizationsVoidRequest
 from tests.test_harness import TestHarness
 
 class AuthorizationsVoidTest(TestHarness):

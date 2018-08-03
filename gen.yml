@@ -1,6 +1,6 @@
 ---
-projectName: pythonSDK
+projectName: pythonRestSDK
 language: python
-sourcePath: pythonsdk
+sourcePath: pythonrestsdk
 testPath: tests
 apiVersioning: false

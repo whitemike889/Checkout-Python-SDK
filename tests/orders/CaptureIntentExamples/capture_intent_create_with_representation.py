@@ -1,6 +1,6 @@
 import unittest
 import json
-from pythonsdk.orders import OrdersCreateRequest
+from pythonrestsdk.orders import OrdersCreateRequest
 from tests.test_harness import TestHarness
 import os
 

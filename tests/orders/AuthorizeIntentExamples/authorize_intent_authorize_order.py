@@ -1,6 +1,6 @@
 import unittest
 import json
-from pythonsdk.orders import OrdersAuthorizeRequest
+from pythonrestsdk.orders import OrdersAuthorizeRequest
 import os
 from tests.test_harness import TestHarness
 

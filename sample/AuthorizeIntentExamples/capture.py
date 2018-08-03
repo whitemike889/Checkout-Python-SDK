@@ -1,6 +1,6 @@
 import json
 import os
-from pythonsdk.payments import AuthorizationsCaptureRequest
+from pythonrestsdk.payments import AuthorizationsCaptureRequest
 from sample.skeleton import Skeleton
 
 
