@@ -2,12 +2,32 @@ import os
 
 from pythonrestsdk.core import PythonRestSdkHttpClient, PythonRestSdkEnvironment
 from paypal_authentication_token import PayPalAuthenticationToken
-
+import json
+from collections import OrderedDict
 
 class Skeleton(object):
     def __init__(self):
         environment = PythonRestSdkEnvironment(os.environ["BASE_URL"])
         self.client = PythonRestSdkHttpClient(environment)
+
+    def pretty_print(self, json_data, pre=""):
+        """
+        Function to print all json data in an organized readable manner
+        """
+        if type(json_data) is not OrderedDict:
+            json_data = json.loads(json_data, object_pairs_hook=OrderedDict)
+        pretty = ""
+        for i, j in json_data.items():
+            pretty += "{}{}: ".format(pre, i.capitalize())
+            if type(j) is OrderedDict:
+                pretty += self.pretty_print(j, pre + "\t")
+            elif type(j) is list:
+                for k, l in enumerate(j):
+                    pretty += "\n{}{}:\n".format(pre + "\t", k+1)
+                    pretty += self.pretty_print(l, pre + "\t\t")
+            else:
+                pretty += j + "\n"
+        return pretty
 
     def authToken(self):
         return PayPalAuthenticationToken(

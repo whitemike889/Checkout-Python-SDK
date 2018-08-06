@@ -3,6 +3,7 @@ import json
 from pythonrestsdk.orders import OrdersPatchRequest
 from tests.test_harness import TestHarness
 
+# TODO do something about this
 class OrdersPatchTest(TestHarness):
     def build_request_body(self):
         return json.loads('{"from":"yKIJvATBe2Qe","op":"rcdJqfIwLwYv9cQ","path":"xsYTDthPhaXzS0f6","value":{}}')

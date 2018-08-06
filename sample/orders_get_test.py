@@ -3,6 +3,7 @@ import json
 from pythonrestsdk.orders import OrdersGetRequest
 from tests.test_harness import TestHarness
 
+# TODO do something about this
 class OrdersGetTest(TestHarness):
 
     def testOrdersGetTest(self):

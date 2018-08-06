@@ -1,8 +1,11 @@
+# from __future__ import print_function
 from skeleton import Skeleton
 import os
 import json
 from pythonrestsdk.orders import OrdersCreateRequest
 from braintreehttp.http_error import HttpError
+
+
 class CreateError(Skeleton):
 
     def create_error_1(self):
@@ -11,21 +14,15 @@ class CreateError(Skeleton):
         """
         body = """{}"""
         request = OrdersCreateRequest()
-        request.authorization('Bearer ' + self.authToken)
+        request.authorization('Bearer ' + self.authToken())
         request.request_body(json.loads(body))
         print "Request Body:", body, "\n"
         print "Response:"
         try:
             response = self.client.execute(request)
         except HttpError as h:
-            print "Status Code: ", h.status_code
-            message = json.loads(h.message)
-            print "Debug ID: ", message['debug_id']
-            print "Details:\n\tName: ", message['name']
-            print "\tMessage:", message['message']
-            print "\tProblems:"
-            for i, detail in enumerate(message['details']):
-                print "\t\t{}. Field: \"{}\"\tIssue: {}".format(i+1,detail['field'], detail['issue'])
+            print "Status Code:", h.status_code
+            print self.pretty_print(h.message)
 
     def create_error_2(self):
         """
@@ -41,19 +38,15 @@ class CreateError(Skeleton):
             response = self.client.execute(request)
         except HttpError as h:
             print "Status Code: ", h.status_code
-            message = json.loads(h.message)
-            print "Details:\n\tName: ", message['name']
-            print "\tMessage:", message['message']
+            print self.pretty_print(h.message)
 
-
-    #Todo: dump all in the response
     def create_error_3(self):
         """
         Body has invalid parameter value for intent
         """
         body = """\n{\n\t"intent": "INVALID",\n\t"purchase_units": [\n\t\t{"amount": \n\t\t\t{\n\t\t\t\t"currency_code": "USD",\n\t\t\t\t"value": "100.00"\n\t\t\t}\n\t\t}\n\t]\n}"""
         request = OrdersCreateRequest()
-        request.authorization('Bearer ' + self.authToken)
+        request.authorization('Bearer ' + self.authToken())
         request.request_body(json.loads(body))
         print "Request Body:", body, "\n"
         print "Response:"
@@ -62,14 +55,7 @@ class CreateError(Skeleton):
             response = self.client.execute(request)
         except HttpError as h:
             print "Status Code: ", h.status_code
-            message = json.loads(h.message)
-            print "Debug ID: ", message['debug_id']
-            print "Details:\n\tName: ", message['name']
-            print "\tMessage:", message['message']
-            print "\tProblems:"
-            for i, detail in enumerate(message['details']):
-                print "\t\t{}. Field: \"{}\"\tIssue: {}".format(i+1,detail['field'], detail['issue'])
-
+            print self.pretty_print(h.message)
 
 print "Calling create_error_1 (Body has no required parameters (intent, purchase_units))"
 CreateError().create_error_1()
@@ -77,5 +63,5 @@ CreateError().create_error_1()
 print "\nCalling create_error_2 (Authorization header has an empty string)"
 CreateError().create_error_2()
 
-print "\nExecuting create_error_3 (Body has no required parameters (intent, purchase_units))"
+print "\nExecuting create_error_3 (Body has invalid parameter value for intent)"
 CreateError().create_error_3()
