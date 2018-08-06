@@ -2,8 +2,10 @@
 
 This is a part of the next major PayPal SDK. It includes a simplified interface to only provide simple model objects and blueprints for HTTP calls. This repo currently contains functionality for PayPal Checkout APIs which includes Orders V2 and Payments V2.
 
-## Creating an Order
+## Examples
+### Creating an Order
 
+#### Code to execute:
 ```python
 from pythonrestsdk.core import PythonRestSdkHttpClient, PythonRestSdkEnvironment, PayPalAuthenticationToken
 from pythonrestsdk.orders import OrdersCreateRequest
@@ -21,7 +23,7 @@ client = PythonRestSdkHttpClient(environment)
 # Here, OrdersCreateRequest() creates a POST request to /v2/checkout/orders
 request = OrdersCreateRequest()
 request.authorization('Bearer ' + authToken)
-request.request_body = (json.loads("{
+request.request_body = (json.loads("""{
                                         "intent": "CAPTURE",
                                         "purchase_units": [
                                             {
@@ -31,14 +33,15 @@ request.request_body = (json.loads("{
                                                 }
                                             }
                                         ]
-                                    }"))
+                                    }"""))
 
 try:
     # Call API with your client and get a response for your call
-    response = client.execute(request);  
+    response = client.execute(request) 
     
     # If call returns body in response, you can get the deserialized version from the result attribute of the response
-    order = response.result;
+    order = response.result
+    print response.result
 except IOError as ioe:
     if isinstance(ioe, HttpError):
         # Something went wrong server-side
@@ -48,9 +51,20 @@ except IOError as ioe:
         # Something went wrong client side
         print ioe
 ```
+#### Example Output
+```
+Status Code:  201
+Status:  CREATED
+Order ID:  7F845507FB875171H
+Intent:  AUTHORIZE
+Links:
+	self: https://api.sandbox.paypal.com/v2/checkout/orders/7F845507FB875171H	Call Type: GET
+	approve: https://www.sandbox.paypal.com/checkoutnow?token=7F845507FB875171H	Call Type: GET
+	authorize: https://api.sandbox.paypal.com/v2/checkout/orders/7F845507FB875171H/authorize	Call Type: POST
+Gross Amount: USD 230.00
+```
 
-
-## Capturing an Order
+#### Capturing an Order
 
 ```python
 # Here, OrdersCaptureRequest() creates a POST request to /v2/checkout/orders
@@ -71,6 +85,17 @@ except IOError as ioe:
     else:
         # Something went wrong client side
         print ioe
+```
+```
+Status Code:  201
+Status:  COMPLETED
+Order ID:  7F845507FB875171H
+Links: 
+	self: https://api.sandbox.paypal.com/v2/checkout/orders/70779998U8897342J	Call Type: GET
+Buyer:
+	Email Address: ganeshramc-buyer@live.com
+	Name: test buyer
+	Phone Number: 408-411-2134
 ```
 ## Samples
 
