@@ -1,7 +1,7 @@
 import os
 
 from pythonrestsdk.core import PythonRestSdkHttpClient, PythonRestSdkEnvironment
-from paypal_authentication_token import PayPalAuthenticationToken
+from pythonrestsdk.core.paypal_authentication_token import PayPalAuthenticationToken
 import json
 from collections import OrderedDict
 

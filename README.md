@@ -5,12 +5,13 @@ This is a part of the next major PayPal SDK. It includes a simplified interface 
 ## Creating an Order
 
 ```python
-from pythonrestsdk.core import PythonRestSdkHttpClient, PythonRestSdkEnvironment
+from pythonrestsdk.core import PythonRestSdkHttpClient, PythonRestSdkEnvironment, PayPalAuthenticationToken
+from pythonrestsdk.orders import OrdersCreateRequest
 
 # Creating Access Token for Sandbox
 clientId = "AVNCVvV9oQ7qee5O8OW4LSngEeU1dI7lJAGCk91E_bjrXF2LXB2TK2ICXQuGtpcYSqs4mz1BMNQWuso1";
 clientSecret = "EDQzd81k-1z2thZw6typSPOTEjxC_QbJh6IithFQuXdRFc7BjVht5rQapPiTaFt5RC-HCa1ir6mi-H5l";
-authToken = PayPalAuthToken().createAuthToken(clientId, clientSecret);
+authToken = PayPalAuthenticationToken().createAuthToken(clientId, clientSecret);
 
 # Creating an environment
 environment = PythonRestSdkEnvironment(os.environ["BASE_URL"])
