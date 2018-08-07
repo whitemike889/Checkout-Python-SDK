@@ -1,4 +1,8 @@
-# PayPal SDK V2
+# REST API SDK for Python V2
+
+![Home Image](homepage.jpg)
+
+__Welcome to PayPal Python SDK__. This repository contains PayPal's Python SDK and samples for REST API.
 
 This is a part of the next major PayPal SDK. It includes a simplified interface to only provide simple model objects and blueprints for HTTP calls. This repo currently contains functionality for PayPal Checkout APIs which includes Orders V2 and Payments V2.
 

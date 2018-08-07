@@ -1,6 +1,4 @@
-# from __future__ import print_function
 from skeleton import Skeleton
-import os
 import json
 from pythonrestsdk.orders import OrdersCreateRequest
 from braintreehttp.http_error import HttpError
