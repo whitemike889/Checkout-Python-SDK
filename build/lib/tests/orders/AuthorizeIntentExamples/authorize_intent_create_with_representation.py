@@ -1,12 +1,11 @@
+import unittest
 import json
 from pythonrestsdk.orders import OrdersCreateRequest
-from pythonrestsdk.core.skeleton import Skeleton
+from tests.test_harness import TestHarness
+import os
 
-
-class CreateWithoutRepresentation(Skeleton):
-
-    @staticmethod
-    def build_request_body():
+class AuthorizeIntentCreateWithRepresentation(TestHarness):
+    def build_request_body(self):
         jsondata = """
         {
           "intent": "AUTHORIZE",
@@ -14,7 +13,7 @@ class CreateWithoutRepresentation(Skeleton):
             "return_url": "https://www.google.com",
             "cancel_url": "https://www.google.com",
             "brand_name": "EXAMPLE INC",
-            "locale": "en-US",
+            "locale": "fr-FR",
             "landing_page": "BILLING",
             "shipping_preference": "SET_PROVIDED_ADDRESS",
             "user_action": "CONTINUE"
@@ -55,6 +54,9 @@ class CreateWithoutRepresentation(Skeleton):
                     "value": "10"
                   }
                 }
+              },
+              "payee": {
+                "email_address": "rpenmetsa-us@paypal.com"
               },
               "items": [
                 {
@@ -108,21 +110,25 @@ class CreateWithoutRepresentation(Skeleton):
         }"""
         return json.loads(jsondata)
 
-    def create_order(self, debug=False):
+    def testOrdersCreateTest(self):
         request = OrdersCreateRequest()
-        request.authorization('Bearer ' + self.authToken())
+        request.authorization('Bearer ' + self.authToken)
+        request.prefer('return=representation')
         request.request_body(self.build_request_body())
         response = self.client.execute(request)
-        if debug:
-            print 'Status Code: ', response.status_code
-            print 'Status: ', response.result.status
-            print 'Order ID: ', response.result.id
-            print 'Links: '
-            for link in response.result.links:
-                print('\t{}: {}\tCall Type: {}'.format(link.rel, link.href, link.method))
+        self.assertEqual(201, response.status_code)
+        self.assertIsNotNone(response.result)
+        print 'Status Code: ', response.status_code
+        print 'Status: ', response.result.status
+        print 'Order ID: ', response.result.id
+        print 'Intent: ', response.result.intent
+        print 'Links:'
+        for link in response.result.links:
+            print('\t{}: {}\tCall Type: {}'.format(link.rel, link.href, link.method))
+        print 'Gross Amount: {} {}'.format(response.result.gross_amount.currency_code,
+                                           response.result.gross_amount.value)
 
         return response
 
-
 if __name__ == "__main__":
-    CreateWithoutRepresentation().create_order(debug=True)
+    unittest.main()

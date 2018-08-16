@@ -1,0 +1,3 @@
+from tests.orders.CaptureIntentExamples.capture_intent_capture_order import *
+from tests.orders.CaptureIntentExamples.capture_intent_create_with_representation import *
+from tests.orders.CaptureIntentExamples.capture_intent_create_without_representation import *

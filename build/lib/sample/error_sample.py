@@ -1,4 +1,4 @@
-from pythonrestsdk.core.skeleton import Skeleton
+from skeleton import Skeleton
 import json
 from pythonrestsdk.orders import OrdersCreateRequest
 from braintreehttp.http_error import HttpError
