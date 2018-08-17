@@ -6,6 +6,11 @@ __Welcome to PayPal Python SDK__. This repository contains PayPal's Python SDK a
 
 This is a part of the next major PayPal SDK. It includes a simplified interface to only provide simple model objects and blueprints for HTTP calls. This repo currently contains functionality for PayPal Checkout APIs which includes Orders V2 and Payments V2.
 
+## Prerequisites
+
+Python 2.0+ or Python 3.0+
+
+An environment which supports TLS 1.2 (see the TLS-update site for more information)
 
 ## Usage
 

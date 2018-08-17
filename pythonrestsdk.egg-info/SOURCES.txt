@@ -3,12 +3,12 @@ pythonrestsdk/__init__.py
 pythonrestsdk.egg-info/PKG-INFO
 pythonrestsdk.egg-info/SOURCES.txt
 pythonrestsdk.egg-info/dependency_links.txt
-pythonrestsdk.egg-info/requires.txt
 pythonrestsdk.egg-info/top_level.txt
 pythonrestsdk/core/__init__.py
 pythonrestsdk/core/paypal_authentication_token.py
 pythonrestsdk/core/python_rest_sdk_environment.py
 pythonrestsdk/core/python_rest_sdk_http_client.py
+pythonrestsdk/core/skeleton.py
 pythonrestsdk/orders/__init__.py
 pythonrestsdk/orders/orders_authorize_request.py
 pythonrestsdk/orders/orders_capture_request.py
@@ -29,7 +29,6 @@ sample/error_sample.py
 sample/orders_get_test.py
 sample/orders_patch_test.py
 sample/orders_validate_test.py
-sample/skeleton.py
 sample/AuthorizeIntentExamples/__init__.py
 sample/AuthorizeIntentExamples/authorize.py
 sample/AuthorizeIntentExamples/capture.py
