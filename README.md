@@ -28,16 +28,15 @@ BraintreeHttp can be found at https://pypi.org/project/braintreehttp/
 Get client ID and client secret by going to https://developer.paypal.com/developer/applications and generating a REST API app. Get <b>Client ID</b> and <b>Secret</b> from there.
 
 ```python
-from pythonrestsdk.core import PythonRestSdkHttpClient, PythonRestSdkEnvironment, PayPalAuthenticationToken, Skeleton
+from checkoutsdk.core import PayPalHttpClient, SandboxEnvironment
 
 
 # Creating Access Token for Sandbox
-clientId = "AVNCVvV9oQ7qee5O8OW4LSngEeU1dI7lJAGCk91E_bjrXF2LXB2TK2ICXQuGtpcYSqs4mz1BMNQWuso1"
-clientSecret = "EDQzd81k-1z2thZw6typSPOTEjxC_QbJh6IithFQuXdRFc7BjVht5rQapPiTaFt5RC-HCa1ir6mi-H5l"
-authToken = PayPalAuthenticationToken(clientId, clientSecret).obtain_token()
-
+client_id = "AVNCVvV9oQ7qee5O8OW4LSngEeU1dI7lJAGCk91E_bjrXF2LXB2TK2ICXQuGtpcYSqs4mz1BMNQWuso1"
+client_secret = "EDQzd81k-1z2thZw6typSPOTEjxC_QbJh6IithFQuXdRFc7BjVht5rQapPiTaFt5RC-HCa1ir6mi-H5l"
 # Creating an environment
-client = Skeleton().client
+environment = SandboxEnvironment(client_id=client_id, client_secret=client_secret)
+client = PayPalHttpClient(environment)
 ```
 
 ## Examples
@@ -46,11 +45,10 @@ client = Skeleton().client
 
 #### Code: 
 ```python
-from pythonrestsdk.orders import OrdersCreateRequest
+from checkoutsdk.orders import OrdersCreateRequest
 # Construct a request object and set desired parameters
 # Here, OrdersCreateRequest() creates a POST request to /v2/checkout/orders
 request = OrdersCreateRequest()
-request.authorization('Bearer ' + authToken)
 request.request_body = ({
                             "intent": "CAPTURE",
                             "purchase_units": [
@@ -85,7 +83,7 @@ except IOError as ioe:
 Status Code:  201
 Status:  CREATED
 Order ID:  7F845507FB875171H
-Intent:  AUTHORIZE
+Intent:  CAPTURE
 Links:
 	self: https://api.sandbox.paypal.com/v2/checkout/orders/7F845507FB875171H	Call Type: GET
 	approve: https://www.sandbox.paypal.com/checkoutnow?token=7F845507FB875171H	Call Type: GET
@@ -94,13 +92,14 @@ Gross Amount: USD 230.00
 ```
 
 ### Capturing an Order
+After approving order above using `approve` link
 
 #### Code:
 ```python
-from pythonrestsdk.orders import OrdersCaptureRequest
+from checkoutsdk.orders import OrdersCaptureRequest
 # Here, OrdersCaptureRequest() creates a POST request to /v2/checkout/orders
 # order.id gives the orderId of the order created above
-request = OrdersCaptureRequest(order.id).authToken('Bearer ' + authToken)
+request = OrdersCaptureRequest(order.id)
 
 try:
     # Call API with your client and get a response for your call

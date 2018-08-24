@@ -1,3 +1,0 @@
-pythonrestsdk
-sample
-tests

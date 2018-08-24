@@ -1,6 +1,6 @@
 ---
-projectName: pythonRestSDK
+projectName: checkoutsdk
 language: python
-sourcePath: pythonrestsdk
+sourcePath: checkoutsdk
 testPath: tests
 apiVersioning: false

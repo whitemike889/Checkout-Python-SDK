@@ -1,3 +1,0 @@
-from tests.orders.AuthorizeIntentExamples.authorize_intent_authorize_order import *
-from tests.orders.AuthorizeIntentExamples.authorize_intent_create_with_representation import *
-from tests.orders.AuthorizeIntentExamples.authorize_intent_create_without_representation import *
