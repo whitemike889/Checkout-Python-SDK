@@ -1,4 +1,3 @@
-import json
 from checkoutsdk.payments import AuthorizationsCaptureRequest
 from sample import SampleSkeleton
 
@@ -6,9 +5,11 @@ from sample import SampleSkeleton
 class Capture(SampleSkeleton):
     @staticmethod
     def build_request_body():
-        return json.loads('{}')
+        """Method to build empty body"""
+        return {}
 
     def capture_order(self, authorization_id, debug=False):
+        """Method to capture order using authorization_id"""
         request = AuthorizationsCaptureRequest(authorization_id)
         request.request_body(self.build_request_body())
         response = self.client.execute(request)

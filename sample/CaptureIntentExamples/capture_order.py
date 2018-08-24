@@ -4,6 +4,7 @@ from sample import SampleSkeleton
 
 class Capture(SampleSkeleton):
     def capture_order(self, order_id, debug=False):
+        """Method to capture order using order_id"""
         request = OrdersCaptureRequest(order_id)
         response = self.client.execute(request)
         if debug:

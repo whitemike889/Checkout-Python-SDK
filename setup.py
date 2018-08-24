@@ -7,7 +7,7 @@ setuptools.setup(
     name="paypalcheckoutsdk",
     version="0.0.5",
     author="Ganeshram Chockalingam",
-    author_email="ganeshramc@live.com",
+    author_email="gchockalingam@paypal.com",
     description="Python Rest SDK for PayPal Checkout",
     long_description="Python Rest SDK for PayPal Checkout",
     long_description_content_type="text/markdown",

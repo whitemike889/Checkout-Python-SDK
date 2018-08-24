@@ -1,13 +1,14 @@
-import json
 from checkoutsdk.orders import OrdersAuthorizeRequest
 from sample import SampleSkeleton
 
 class Authorize(SampleSkeleton):
     @staticmethod
     def build_request_body():
-        return json.loads('{}')
+        """Method to build empty body"""
+        return {}
 
     def authorize_order(self, order_id, debug=False):
+        """Method to authorize order using order_id"""
         request = OrdersAuthorizeRequest(order_id)
         request.request_body(self.build_request_body())
         response = self.client.execute(request)

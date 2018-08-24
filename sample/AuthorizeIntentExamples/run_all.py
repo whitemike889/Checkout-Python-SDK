@@ -1,7 +1,6 @@
-from authorize import *
-from capture import *
-from create_with_representation import *
-from create_without_representation import *
+from authorize_order import *
+from capture_order import *
+from create_order import *
 import os
 
 if os.environ.get('BASE_URL', 'NOT SET') == 'NOT SET':
@@ -9,7 +8,7 @@ if os.environ.get('BASE_URL', 'NOT SET') == 'NOT SET':
     exit(1)
 
 # First run through capture_with_representation
-response = CreateWithRepresentation().create_order()
+response = CreateOrder().create_order()
 order_id = ''
 print('Creating Order...')
 if response.status_code in [200, 201]:
