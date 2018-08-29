@@ -129,6 +129,13 @@ Buyer:
 	Name: test buyer
 	Phone Number: 408-411-2134
 ```
+
+To run integration tests using your client id and secret, clone this repository and run the following command:
+```sh
+$ pip install nose # if not already installed
+$ PAYPAL_CLIENT_ID=your_client_id PAYPAL_CLIENT_SECRET=your_client_secret nosetests --exe
+```
+
 ## Samples
 
 You can start off by trying out [creating and capturing an order](/sample/CaptureIntentExamples/run_all.py)
