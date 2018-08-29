@@ -1,16 +1,13 @@
 
 from checkoutsdk.orders import OrdersGetRequest
 from sample import SampleSkeleton
-from sample.CaptureIntentExamples.create_order import CreateWithRepresentation
+from sample.CaptureIntentExamples.create_order import CreateOrder
 
 
 class GetOrder(SampleSkeleton):
-    def get_order(self):
+    def get_order(self, order_id):
         """Method to get order"""
-        response = CreateWithRepresentation().create_order()
-        order = response.result
-
-        request = OrdersGetRequest(order.id)
+        request = OrdersGetRequest(order_id)
         response = self.client.execute(request)
         print 'Status Code: ', response.status_code
         print 'Status: ', response.result.status
@@ -24,4 +21,6 @@ class GetOrder(SampleSkeleton):
 
 
 if __name__ == '__main__':
-    GetOrder().get_order()
+    createResponse = CreateOrder().create_order()
+    order = createResponse.result
+    GetOrder().get_order(order.id)

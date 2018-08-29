@@ -4,9 +4,10 @@ from sample import SampleSkeleton
 
 
 class CreateOrder(SampleSkeleton):
+    """Sample to Create Order"""
     @staticmethod
     def build_request_body():
-        """Method to body with <b>CAPTURE</b> intent"""
+        """Method to create body with CAPTURE intent"""
         return \
             {
                 "intent": "CAPTURE",

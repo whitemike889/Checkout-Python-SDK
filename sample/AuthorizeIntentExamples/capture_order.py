@@ -2,7 +2,8 @@ from checkoutsdk.payments import AuthorizationsCaptureRequest
 from sample import SampleSkeleton
 
 
-class Capture(SampleSkeleton):
+class CaptureOrder(SampleSkeleton):
+    """Sample to Capture Order"""
     @staticmethod
     def build_request_body():
         """Method to build empty body"""
@@ -25,4 +26,4 @@ class Capture(SampleSkeleton):
 
 if __name__ == "__main__":
     auth_id = '0LC80782T3164811U'
-    Capture().capture_order(auth_id, debug=True)
+    CaptureOrder().capture_order(auth_id, debug=True)

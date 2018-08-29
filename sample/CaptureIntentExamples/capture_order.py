@@ -2,7 +2,8 @@ from checkoutsdk.orders import OrdersCaptureRequest
 from sample import SampleSkeleton
 
 
-class Capture(SampleSkeleton):
+class CaptureOrder(SampleSkeleton):
+    """Sample to Capture Order"""
     def capture_order(self, order_id, debug=False):
         """Method to capture order using order_id"""
         request = OrdersCaptureRequest(order_id)
@@ -23,4 +24,4 @@ class Capture(SampleSkeleton):
 
 if __name__ == "__main__":
     order_id = ''
-    Capture().capture_order(order_id, debug=True)
+    CaptureOrder().capture_order(order_id, debug=True)

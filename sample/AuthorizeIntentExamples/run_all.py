@@ -1,17 +1,11 @@
 from authorize_order import *
 from capture_order import *
 from create_order import *
-import os
 
-if os.environ.get('BASE_URL', 'NOT SET') == 'NOT SET':
-    print 'BASE_URL environment variable is not set'
-    exit(1)
-
-# First run through capture_with_representation
 response = CreateOrder().create_order()
 order_id = ''
-print('Creating Order...')
-if response.status_code in [200, 201]:
+print 'Creating Order...'
+if response.status_code == 201:
     order_id = response.result.id
     for link in response.result.links:
         print('\t{}: {}\tCall Type: {}'.format(str(link.rel).capitalize(), link.href, link.method))
@@ -23,19 +17,18 @@ else:
 
 raw_input()
 print 'Authorizing Order...'
-print 'Call Made: Authorize().authorize_order(order_id)'
-response = Authorize().authorize_order(order_id)
+response = AuthorizeOrder().authorize_order(order_id)
 authorization_id = ''
-if response.status_code in [200, 201]:
+if response.status_code == 201:
     authorization_id = response.result.purchase_units[0].payments.authorizations[0].id
 else:
     print("Link is unreachable")
     exit(1)
-
 print 'Authorized Successfully\n'
+
 print 'Capturing Order...'
-response = Capture().capture_order(authorization_id)
-if response.status_code in [200, 201]:
+response = CaptureOrder().capture_order(authorization_id)
+if response.status_code == 201:
     print 'Captured Successfully\n'
     print 'Status Code: ', response.status_code
     print 'Status: ', response.result.status

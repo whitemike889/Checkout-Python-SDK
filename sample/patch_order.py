@@ -1,6 +1,6 @@
 from checkoutsdk.orders import OrdersPatchRequest, OrdersGetRequest
 from sample import SampleSkeleton
-from sample.AuthorizeIntentExamples import CreateWithRepresentation
+from sample.AuthorizeIntentExamples import CreateOrder
 
 
 class PatchOrder(SampleSkeleton):
@@ -34,19 +34,12 @@ class PatchOrder(SampleSkeleton):
                 }
             ]
 
-    def patch_order(self):
+    def patch_order(self, order_id):
         """Method to patch order"""
-        print 'Before PATCH:'
-        response = CreateWithRepresentation().create_order(True)
-        order = response.result
-
-        request = OrdersPatchRequest(order.id)
+        request = OrdersPatchRequest(order_id)
         request.request_body(self.build_request_body())
         response = self.client.execute(request)
         response = self.client.execute(OrdersGetRequest(order.id))
-        print '\nAfter PATCH (Changed Intent and Amount):'
-        print 'Status Code: ', response.status_code
-        print 'Status: ', response.result.status
         print 'Order ID: ', response.result.id
         print 'Intent: ', response.result.intent
         print 'Links:'
@@ -57,4 +50,8 @@ class PatchOrder(SampleSkeleton):
 
 
 if __name__ == "__main__":
-    PatchOrder().patch_order()
+    print 'Before PATCH:'
+    createResponse = CreateOrder().create_order(True)
+    order = createResponse.result
+    print '\nAfter PATCH (Changed Intent and Amount):'
+    PatchOrder().patch_order(order.id)

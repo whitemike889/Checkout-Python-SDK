@@ -1,7 +1,9 @@
 from checkoutsdk.orders import OrdersAuthorizeRequest
 from sample import SampleSkeleton
 
-class Authorize(SampleSkeleton):
+
+class AuthorizeOrder(SampleSkeleton):
+    """Sample to Authorize Order"""
     @staticmethod
     def build_request_body():
         """Method to build empty body"""
