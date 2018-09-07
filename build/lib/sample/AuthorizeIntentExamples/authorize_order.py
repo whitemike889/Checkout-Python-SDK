@@ -12,7 +12,6 @@ class AuthorizeOrder(SampleSkeleton):
     def authorize_order(self, order_id, debug=False):
         """Method to authorize order using order_id"""
         request = OrdersAuthorizeRequest(order_id)
-        request.prefer("return=representation")
         request.request_body(self.build_request_body())
         response = self.client.execute(request)
         if debug:
@@ -27,11 +26,12 @@ class AuthorizeOrder(SampleSkeleton):
             for link in response.result.purchase_units[0].payments.authorizations[0].links:
                 print('\t{}: {}\tCall Type: {}'.format(link.rel, link.href, link.method))
             print "Buyer:"
-            print "\tEmail Address: {}\n\tPhone Number: {}".format(response.result.payer.email_address,
-                                                                   response.result.payer.phone.phone_number.national_number)
+            print "\tEmail Address: {}\n\tName: {}\n\tPhone Number: {}".format(response.result.payer.email_address,
+                                                                               response.result.payer.name.given_name + " " + response.result.payer.name.surname,
+                                                                               response.result.payer.phone.phone_number.national_number)
         return response
 
 
 if __name__ == "__main__":
-    order_id = '92F14510NC218224D'
-    AuthorizeOrder().authorize_order(order_id, debug=True)
+    order_id = '1AL141024Y8279459'
+    Authorize().authorize_order(order_id, debug=True)

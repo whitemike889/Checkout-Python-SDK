@@ -17,7 +17,7 @@ class CaptureOrder(SampleSkeleton):
         if debug:
             print 'Status Code: ', response.status_code
             print 'Status: ', response.result.status
-            print 'Capture ID: ', response.result.id
+            print 'Order ID: ', response.result.id
             print 'Links: '
             for link in response.result.links:
                 print('\t{}: {}\tCall Type: {}'.format(link.rel, link.href, link.method))
@@ -25,5 +25,5 @@ class CaptureOrder(SampleSkeleton):
 
 
 if __name__ == "__main__":
-    auth_id = '8S628606RY839401M'
+    auth_id = '0LC80782T3164811U'
     CaptureOrder().capture_order(auth_id, debug=True)

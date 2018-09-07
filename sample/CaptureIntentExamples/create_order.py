@@ -36,7 +36,7 @@ class CreateOrder(SampleSkeleton):
                                 },
                                 "shipping": {
                                     "currency_code": "USD",
-                                    "value": "20.00"
+                                    "value": "30.00"
                                 },
                                 "handling": {
                                     "currency_code": "USD",
@@ -45,10 +45,6 @@ class CreateOrder(SampleSkeleton):
                                 "tax_total": {
                                     "currency_code": "USD",
                                     "value": "20.00"
-                                },
-                                "gift_wrap": {
-                                    "currency_code": "USD",
-                                    "value": "10.00"
                                 },
                                 "shipping_discount": {
                                     "currency_code": "USD",
@@ -123,8 +119,8 @@ class CreateOrder(SampleSkeleton):
             print 'Links:'
             for link in response.result.links:
                 print('\t{}: {}\tCall Type: {}'.format(link.rel, link.href, link.method))
-            print 'Gross Amount: {} {}'.format(response.result.gross_amount.currency_code,
-                                               response.result.gross_amount.value)
+            print 'Total Amount: {} {}'.format(response.result.purchase_units[0].amount.currency_code,
+                                               response.result.purchase_units[0].amount.value)
 
         return response
 

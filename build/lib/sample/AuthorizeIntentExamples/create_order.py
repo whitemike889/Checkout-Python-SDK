@@ -35,7 +35,7 @@ class CreateOrder(SampleSkeleton):
                                 },
                                 "shipping": {
                                     "currency_code": "USD",
-                                    "value": "30.00"
+                                    "value": "20.00"
                                 },
                                 "handling": {
                                     "currency_code": "USD",
@@ -45,9 +45,13 @@ class CreateOrder(SampleSkeleton):
                                     "currency_code": "USD",
                                     "value": "20.00"
                                 },
-                                "shipping_discount": {
+                                "gift_wrap": {
                                     "currency_code": "USD",
                                     "value": "10.00"
+                                },
+                                "shipping_discount": {
+                                    "currency_code": "USD",
+                                    "value": "10"
                                 }
                             }
                         },
@@ -108,15 +112,15 @@ class CreateOrder(SampleSkeleton):
         request.request_body(self.build_request_body())
         response = self.client.execute(request)
         if debug:
-            print 'Status Code:', response.status_code
-            print 'Status:', response.result.status
-            print 'Order ID:', response.result.id
-            print 'Intent:', response.result.intent
+            print 'Status Code: ', response.status_code
+            print 'Status: ', response.result.status
+            print 'Order ID: ', response.result.id
+            print 'Intent: ', response.result.intent
             print 'Links:'
             for link in response.result.links:
                 print('\t{}: {}\tCall Type: {}'.format(link.rel, link.href, link.method))
-            print 'Total Amount: {} {}'.format(response.result.purchase_units[0].amount.currency_code,
-                                               response.result.purchase_units[0].amount.value)
+            print 'Gross Amount: {} {}'.format(response.result.gross_amount.currency_code,
+                                               response.result.gross_amount.value)
 
         return response
 

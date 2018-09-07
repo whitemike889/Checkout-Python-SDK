@@ -45,8 +45,8 @@ class PatchOrder(SampleSkeleton):
         print 'Links:'
         for link in response.result.links:
             print('\t{}: {}\tCall Type: {}'.format(link.rel, link.href, link.method))
-        print 'Gross Amount: {} {}'.format(response.result.purchase_units[0].amount.currency_code,
-                                           response.result.purchase_units[0].amount.value)
+        print 'Gross Amount: {} {}'.format(response.result.gross_amount.currency_code,
+                                           response.result.gross_amount.value)
 
 
 if __name__ == "__main__":

@@ -1,16 +1,11 @@
-from capture import *
-from create_with_representation import *
-import os
+from capture_order import *
+from create_order import *
 
-if os.environ.get('BASE_URL', 'NOT SET') == 'NOT SET':
-    print 'BASE_URL environment variable is not set'
-    exit(1)
 
-# First run through capture_with_representation
-response = CreateWithRepresentation().create_order()
+response = CreateOrder().create_order()
 order_id = ''
-print('Creating Order...')
-if response.status_code in [200, 201]:
+print 'Creating Order...'
+if response.status_code == 201:
     order_id = response.result.id
     for link in response.result.links:
         print('\t{} link: {}\tCall Type: {}'.format(str(link.rel).capitalize(), link.href, link.method))
@@ -22,8 +17,8 @@ else:
 
 raw_input()
 print 'Capturing Order...'
-response = Capture().capture_order(order_id)
-if response.status_code in [200, 201]:
+response = CaptureOrder().capture_order(order_id)
+if response.status_code == 201:
     print 'Captured Successfully\n'
     print 'Status Code: ', response.status_code
     print 'Status: ', response.result.status

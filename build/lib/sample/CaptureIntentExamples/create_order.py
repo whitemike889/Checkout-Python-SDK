@@ -1,3 +1,4 @@
+import json
 from checkoutsdk.orders import OrdersCreateRequest
 from sample import SampleSkeleton
 
@@ -6,10 +7,10 @@ class CreateOrder(SampleSkeleton):
     """Sample to Create Order"""
     @staticmethod
     def build_request_body():
-        """Method to create body with AUTHORIZE intent"""
+        """Method to create body with CAPTURE intent"""
         return \
             {
-                "intent": "AUTHORIZE",
+                "intent": "CAPTURE",
                 "application_context": {
                     "return_url": "https://www.example.com",
                     "cancel_url": "https://www.example.com",
@@ -35,7 +36,7 @@ class CreateOrder(SampleSkeleton):
                                 },
                                 "shipping": {
                                     "currency_code": "USD",
-                                    "value": "30.00"
+                                    "value": "20.00"
                                 },
                                 "handling": {
                                     "currency_code": "USD",
@@ -45,11 +46,18 @@ class CreateOrder(SampleSkeleton):
                                     "currency_code": "USD",
                                     "value": "20.00"
                                 },
-                                "shipping_discount": {
+                                "gift_wrap": {
                                     "currency_code": "USD",
                                     "value": "10.00"
+                                },
+                                "shipping_discount": {
+                                    "currency_code": "USD",
+                                    "value": "10"
                                 }
                             }
+                        },
+                        "payee": {
+                            "email_address": "rpenmetsa-us@paypal.com"
                         },
                         "items": [
                             {
@@ -108,15 +116,15 @@ class CreateOrder(SampleSkeleton):
         request.request_body(self.build_request_body())
         response = self.client.execute(request)
         if debug:
-            print 'Status Code:', response.status_code
-            print 'Status:', response.result.status
-            print 'Order ID:', response.result.id
-            print 'Intent:', response.result.intent
+            print 'Status Code: ', response.status_code
+            print 'Status: ', response.result.status
+            print 'Order ID: ', response.result.id
+            print 'Intent: ', response.result.intent
             print 'Links:'
             for link in response.result.links:
                 print('\t{}: {}\tCall Type: {}'.format(link.rel, link.href, link.method))
-            print 'Total Amount: {} {}'.format(response.result.purchase_units[0].amount.currency_code,
-                                               response.result.purchase_units[0].amount.value)
+            print 'Gross Amount: {} {}'.format(response.result.gross_amount.currency_code,
+                                               response.result.gross_amount.value)
 
         return response
 

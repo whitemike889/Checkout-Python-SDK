@@ -1,6 +1,7 @@
 from authorize_order import *
 from capture_order import *
 from create_order import *
+from refund_order import *
 
 response = CreateOrder().create_order()
 order_id = ''
@@ -21,6 +22,7 @@ response = AuthorizeOrder().authorize_order(order_id)
 authorization_id = ''
 if response.status_code == 201:
     authorization_id = response.result.purchase_units[0].payments.authorizations[0].id
+    print 'Authorization ID:', authorization_id
 else:
     print("Link is unreachable")
     exit(1)
@@ -28,14 +30,27 @@ print 'Authorized Successfully\n'
 
 print 'Capturing Order...'
 response = CaptureOrder().capture_order(authorization_id)
+capture_id = ''
 if response.status_code == 201:
-    print 'Captured Successfully\n'
-    print 'Status Code: ', response.status_code
-    print 'Status: ', response.result.status
-    print 'Order ID: ', response.result.id
-    print 'Links: '
+    capture_id = response.result.id
+    print 'Status Code:', response.status_code
+    print 'Status:', response.result.status
+    print 'Capture ID:', response.result.id
+    print 'Links:'
     for link in response.result.links:
         print('\t{}: {}\tCall Type: {}'.format(link.rel, link.href, link.method))
+    print 'Captured Successfully\n'
+
+print 'Refunding Order...'
+response = RefundOrder().refund_order(capture_id)
+if response.status_code == 201:
+    print 'Status Code:', response.status_code
+    print 'Status:', response.result.status
+    print 'Order ID:', response.result.id
+    print 'Links:'
+    for link in response.result.links:
+        print('\t{}: {}\tCall Type: {}'.format(link.rel, link.href, link.method))
+
 
 
 
