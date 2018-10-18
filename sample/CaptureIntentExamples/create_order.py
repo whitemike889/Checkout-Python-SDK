@@ -1,10 +1,12 @@
-import json
+from sample import PayPalClient
 from checkoutsdk.orders import OrdersCreateRequest
-from sample import SampleSkeleton
 
 
-class CreateOrder(SampleSkeleton):
-    """Sample to Create Order"""
+class CreateOrder(PayPalClient):
+    
+    """Setting up the JSON request body for creating the Order. The Intent in the
+        request body should be set as "CAPTURE" for capture intent flow."""
+
     @staticmethod
     def build_request_body():
         """Method to create body with CAPTURE intent"""
@@ -52,9 +54,6 @@ class CreateOrder(SampleSkeleton):
                                 }
                             }
                         },
-                        "payee": {
-                            "email_address": "rpenmetsa-us@paypal.com"
-                        },
                         "items": [
                             {
                                 "name": "T-Shirt",
@@ -89,11 +88,10 @@ class CreateOrder(SampleSkeleton):
                         ],
                         "shipping": {
                             "method": "United States Postal Service",
+                            "name": {
+                                "full_name":"John Doe"
+                            },
                             "address": {
-                                "name": {
-                                    "give_name":"John",
-                                    "surname":"Doe"
-                                },
                                 "address_line_1": "123 Townsend St",
                                 "address_line_2": "Floor 6",
                                 "admin_area_2": "San Francisco",
@@ -106,9 +104,12 @@ class CreateOrder(SampleSkeleton):
                 ]
             }
 
+    """ This is the sample function which can be sued to create an order. It uses the
+        JSON body returned by buildRequestBody() to create an new Order."""
+
     def create_order(self, debug=False):
         request = OrdersCreateRequest()
-        request.prefer('return=representation')
+        request.headers['prefer'] = 'return=representation'
         request.request_body(self.build_request_body())
         response = self.client.execute(request)
         if debug:
@@ -124,6 +125,7 @@ class CreateOrder(SampleSkeleton):
 
         return response
 
-
+"""This is the driver function which invokes the createOrder function to create
+   an sample order."""
 if __name__ == "__main__":
     CreateOrder().create_order(debug=True)

@@ -1,6 +1,6 @@
-from capture_order import *
-from create_order import *
-
+from capture_order import CaptureOrder
+from create_order import CreateOrder
+from sample.refund_order import RefundOrder
 
 response = CreateOrder().create_order()
 order_id = ''
@@ -17,12 +17,29 @@ else:
 
 raw_input()
 print 'Capturing Order...'
+capture_id =""
 response = CaptureOrder().capture_order(order_id)
 if response.status_code == 201:
     print 'Captured Successfully\n'
     print 'Status Code: ', response.status_code
     print 'Status: ', response.result.status
     print 'Order ID: ', response.result.id
+    print 'Capture Ids: '
+    for purchase_unit in response.result.purchase_units:
+        for capture in purchase_unit.payments.captures:
+            print '\t', capture.id
+            capture_id =capture.id
+    print 'Links: '
+    for link in response.result.links:
+        print('\t{}: {}\tCall Type: {}'.format(link.rel, link.href, link.method))
+        
+print 'Refunding Order...'
+response = RefundOrder().refund_order(capture_id)
+if response.status_code == 201:
+    print 'Refunded Successfully\n'
+    print 'Status Code: ', response.status_code
+    print 'Status: ', response.result.status
+    print 'Refund ID: ', response.result.id
     print 'Links: '
     for link in response.result.links:
         print('\t{}: {}\tCall Type: {}'.format(link.rel, link.href, link.method))

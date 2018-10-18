@@ -1,1 +1,1 @@
-from sample.sample_skeleton import *
+from sample.paypal_client import *

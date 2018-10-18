@@ -1,14 +1,22 @@
+from sample import PayPalClient
 from checkoutsdk.payments import CapturesRefundRequest
-from sample import SampleSkeleton
 
 
-class RefundOrder(SampleSkeleton):
-    """Sample to Refund Order"""
+class RefundOrder(PayPalClient):
+    
+    """Request body for building refund request. This can be updated with values in case of partial refund. """
     @staticmethod
     def build_request_body():
         """Method to build empty body"""
-        return {}
+        return \
+            {
+              "amount": {
+                "value": "20.00",
+                "currency_code": "USD"
+              }
+            }
 
+    """Below function can be used to refund an capture. Valid capture id should be passed as an argument."""
     def refund_order(self, capture_id, debug=False):
         """Method to refund order using capture_id"""
         request = CapturesRefundRequest(capture_id)
@@ -24,7 +32,7 @@ class RefundOrder(SampleSkeleton):
                 print('\t{}: {}\tCall Type: {}'.format(link.rel, link.href, link.method))
         return response
 
-
+"""This is the driver function which invokes the refund capture function. Capture Id value should be replaced with the valid capture id. """
 if __name__ == "__main__":
-    capture_id = '5GB86866A1365925K'
+    capture_id = '<<REPLACE-WITH-VALID-CAPTURE-ID>>'
     RefundOrder().refund_order(capture_id, debug=True)

@@ -1,9 +1,11 @@
+from sample import PayPalClient
 from checkoutsdk.orders import OrdersCaptureRequest
-from sample import SampleSkeleton
 
 
-class CaptureOrder(SampleSkeleton):
-    """Sample to Capture Order"""
+class CaptureOrder(PayPalClient):
+        
+    """this is the sample function performing payment capture on the order. Approved Order id should be passed as an argument to this function"""
+
     def capture_order(self, order_id, debug=False):
         """Method to capture order using order_id"""
         request = OrdersCaptureRequest(order_id)
@@ -15,6 +17,10 @@ class CaptureOrder(SampleSkeleton):
             print 'Links: '
             for link in response.result.links:
                 print('\t{}: {}\tCall Type: {}'.format(link.rel, link.href, link.method))
+            print 'Capture Ids: '
+            for purchase_unit in response.result.purchase_units:
+                for capture in purchase_unit.payments.captures:
+                    print '\t', capture.id
             print "Buyer:"
             print "\tEmail Address: {}\n\tName: {}\n\tPhone Number: {}".format(response.result.payer.email_address,
                                                                            response.result.payer.name.given_name + " " + response.result.payer.name.surname,
@@ -22,6 +28,7 @@ class CaptureOrder(SampleSkeleton):
         return response
 
 
+"""This is the driver function which invokes the capture order function. Order Id value should be replaced with the approved order id. """
 if __name__ == "__main__":
-    order_id = ''
+    order_id = '8G344453R30787301'
     CaptureOrder().capture_order(order_id, debug=True)

@@ -1,9 +1,9 @@
 from checkoutsdk.orders import OrdersPatchRequest, OrdersGetRequest
-from sample import SampleSkeleton
+from sample import PayPalClient
 from sample.AuthorizeIntentExamples import CreateOrder
 
 
-class PatchOrder(SampleSkeleton):
+class PatchOrder(PayPalClient):
     @staticmethod
     def build_request_body():
         """Method to created body for patch order -> list of patches"""

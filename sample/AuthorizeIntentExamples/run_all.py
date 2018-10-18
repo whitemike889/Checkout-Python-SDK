@@ -1,7 +1,7 @@
-from authorize_order import *
-from capture_order import *
-from create_order import *
-from refund_order import *
+from authorize_order import AuthorizeOrder
+from capture_order import CaptureOrder
+from create_order import CreateOrder
+from sample.refund_order import RefundOrder
 
 response = CreateOrder().create_order()
 order_id = ''

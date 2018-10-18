@@ -1,11 +1,13 @@
+from sample import PayPalClient
 from checkoutsdk.orders import OrdersCreateRequest
-from sample import SampleSkeleton
 
 
-class CreateOrder(SampleSkeleton):
-    """Sample to Create Order"""
+class CreateOrder(PayPalClient):
+        
+    """Setting up the complete JSON request body for creating the Order. The Intent in the
+        request body should be set as "AUTHORIZE" for capture intent flow."""
     @staticmethod
-    def build_request_body():
+    def build_complete_request_body():
         """Method to create body with AUTHORIZE intent"""
         return \
             {
@@ -85,11 +87,10 @@ class CreateOrder(SampleSkeleton):
                         ],
                         "shipping": {
                             "method": "United States Postal Service",
+                            "name": {
+                                    "full_name":"John Doe"
+                            },
                             "address": {
-                                "name": {
-                                    "give_name":"John",
-                                    "surname":"Doe"
-                                },
                                 "address_line_1": "123 Townsend St",
                                 "address_line_2": "Floor 6",
                                 "admin_area_2": "San Francisco",
@@ -102,12 +103,32 @@ class CreateOrder(SampleSkeleton):
                 ]
             }
 
+    """Setting up the minimum required JSON request body for creating the Order. The Intent in the
+        request body should be set as "AUTHORIZE" for capture intent flow."""
+    @staticmethod
+    def build_minimum_request_body():
+        """Method to create body with AUTHORIZE intent"""
+        return \
+            {
+                "intent": "AUTHORIZE",
+                "purchase_units": [
+                    {
+                        "amount": {
+                            "currency_code": "USD",
+                            "value": "230.00"
+                            }
+                    }
+                ]
+            }
+
+    """This function can be used to create an order with complete request body"""
     def create_order(self, debug=False):
         request = OrdersCreateRequest()
-        request.prefer('return=representation')
-        request.request_body(self.build_request_body())
+        request.headers['prefer'] = 'return=representation'
+        request.request_body(self.build_complete_request_body())
         response = self.client.execute(request)
         if debug:
+            print 'Order With Complete Payload:'
             print 'Status Code:', response.status_code
             print 'Status:', response.result.status
             print 'Order ID:', response.result.id
@@ -120,6 +141,28 @@ class CreateOrder(SampleSkeleton):
 
         return response
 
+    """This function can be used to create an order with minimum required request body"""
+    def create_order_with_minimum_payload(self, debug=False):
+        request = OrdersCreateRequest()
+        request.prefer('return=representation')
+        request.request_body(self.build_minimum_request_body())
+        response = self.client.execute(request)
+        if debug:
+            print 'Order With Minimum Payload:'
+            print 'Status Code:', response.status_code
+            print 'Status:', response.result.status
+            print 'Order ID:', response.result.id
+            print 'Intent:', response.result.intent
+            print 'Links:'
+            for link in response.result.links:
+                print('\t{}: {}\tCall Type: {}'.format(link.rel, link.href, link.method))
+            print 'Total Amount: {} {}'.format(response.result.purchase_units[0].amount.currency_code,
+                                               response.result.purchase_units[0].amount.value)
 
+        return response
+
+"""This is the driver function which invokes the createOrder function to create
+   an sample order."""
 if __name__ == "__main__":
     CreateOrder().create_order(debug=True)
+    CreateOrder().create_order_with_minimum_payload(debug=True)

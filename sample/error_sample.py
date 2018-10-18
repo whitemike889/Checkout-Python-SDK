@@ -1,10 +1,10 @@
-from sample import SampleSkeleton
+from sample import PayPalClient
 import json
 from checkoutsdk.orders import OrdersCreateRequest
 from braintreehttp.http_error import HttpError
 
 
-class CreateError(SampleSkeleton):
+class CreateError(PayPalClient):
 
     def create_error_1(self):
         """

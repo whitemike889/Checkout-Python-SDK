@@ -1,14 +1,15 @@
+from sample import PayPalClient
 from checkoutsdk.orders import OrdersAuthorizeRequest
-from sample import SampleSkeleton
 
 
-class AuthorizeOrder(SampleSkeleton):
-    """Sample to Authorize Order"""
+class AuthorizeOrder(PayPalClient):
+    
+    """Sample request body to Authorize Order. This can be updated with the required fields as per need."""
     @staticmethod
     def build_request_body():
-        """Method to build empty body"""
         return {}
 
+    """This function can be used to authorize an approved order. Valid authorized order id should be passed as an argument to this function."""
     def authorize_order(self, order_id, debug=False):
         """Method to authorize order using order_id"""
         request = OrdersAuthorizeRequest(order_id)
@@ -31,7 +32,8 @@ class AuthorizeOrder(SampleSkeleton):
                                                                    response.result.payer.phone.phone_number.national_number)
         return response
 
-
+"""This is the driver function which invokes the authorize_order function with valid approved order id to authorize
+   an sample order. order_id value should be replaced with an valid approved order id"""
 if __name__ == "__main__":
-    order_id = '92F14510NC218224D'
+    order_id = '<<REPLACE-WITH-VALID-APPROVED-ORDER-ID>>'
     AuthorizeOrder().authorize_order(order_id, debug=True)
