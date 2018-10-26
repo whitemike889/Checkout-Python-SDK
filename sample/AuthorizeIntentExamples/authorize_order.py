@@ -1,6 +1,6 @@
 from sample import PayPalClient
 from checkoutsdk.orders import OrdersAuthorizeRequest
-
+import json
 
 class AuthorizeOrder(PayPalClient):
     
@@ -30,6 +30,8 @@ class AuthorizeOrder(PayPalClient):
             print "Buyer:"
             print "\tEmail Address: {}\n\tPhone Number: {}".format(response.result.payer.email_address,
                                                                    response.result.payer.phone.phone_number.national_number)
+            json_data = self.object_to_json(response.result)
+            print "json_data: ", json.dumps(json_data,indent=4)
         return response
 
 """This is the driver function which invokes the authorize_order function with valid approved order id to authorize

@@ -1,5 +1,7 @@
 from sample import PayPalClient
 from checkoutsdk.orders import OrdersCreateRequest
+from braintreehttp.serializers.json_serializer import Json
+import json
 
 
 class CreateOrder(PayPalClient):
@@ -30,7 +32,7 @@ class CreateOrder(PayPalClient):
                         "soft_descriptor": "HighFashions",
                         "amount": {
                             "currency_code": "USD",
-                            "value": "230.00",
+                            "value": "220.00",
                             "breakdown": {
                                 "item_total": {
                                     "currency_code": "USD",
@@ -38,7 +40,7 @@ class CreateOrder(PayPalClient):
                                 },
                                 "shipping": {
                                     "currency_code": "USD",
-                                    "value": "30.00"
+                                    "value": "20.00"
                                 },
                                 "handling": {
                                     "currency_code": "USD",
@@ -122,7 +124,8 @@ class CreateOrder(PayPalClient):
                 print('\t{}: {}\tCall Type: {}'.format(link.rel, link.href, link.method))
             print 'Total Amount: {} {}'.format(response.result.purchase_units[0].amount.currency_code,
                                                response.result.purchase_units[0].amount.value)
-
+            json_data = self.object_to_json(response.result)
+            print "json_data: ", json.dumps(json_data,indent=4)
         return response
 
 """This is the driver function which invokes the createOrder function to create

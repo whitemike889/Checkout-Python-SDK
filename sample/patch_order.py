@@ -1,7 +1,7 @@
 from checkoutsdk.orders import OrdersPatchRequest, OrdersGetRequest
 from sample import PayPalClient
 from sample.AuthorizeIntentExamples import CreateOrder
-
+import json
 
 class PatchOrder(PayPalClient):
     @staticmethod
@@ -38,7 +38,7 @@ class PatchOrder(PayPalClient):
         """Method to patch order"""
         request = OrdersPatchRequest(order_id)
         request.request_body(self.build_request_body())
-        response = self.client.execute(request)
+        self.client.execute(request)
         response = self.client.execute(OrdersGetRequest(order.id))
         print 'Order ID: ', response.result.id
         print 'Intent: ', response.result.intent
@@ -47,7 +47,8 @@ class PatchOrder(PayPalClient):
             print('\t{}: {}\tCall Type: {}'.format(link.rel, link.href, link.method))
         print 'Gross Amount: {} {}'.format(response.result.purchase_units[0].amount.currency_code,
                                            response.result.purchase_units[0].amount.value)
-
+        json_data = self.object_to_json(response.result)
+        print "json_data: ", json.dumps(json_data,indent=4)
 
 if __name__ == "__main__":
     print 'Before PATCH:'

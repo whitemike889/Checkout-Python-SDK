@@ -1,6 +1,7 @@
 from sample import PayPalClient
 from checkoutsdk.orders import OrdersGetRequest
 from sample.CaptureIntentExamples.create_order import CreateOrder
+import json
  
 class GetOrder(PayPalClient):
     
@@ -18,6 +19,8 @@ class GetOrder(PayPalClient):
             print('\t{}: {}\tCall Type: {}'.format(link.rel, link.href, link.method))
         print 'Gross Amount: {} {}'.format(response.result.purchase_units[0].amount.currency_code,
                                            response.result.purchase_units[0].amount.value)
+        json_data = self.object_to_json(response.result)
+        print "json_data: ", json.dumps(json_data,indent=4)
 
 """This is the driver function which invokes the get_order function with order id to retrieve
    an sample order. For the order id, we invoke the create order to create an new order and then we are using 

@@ -1,5 +1,6 @@
 from sample import PayPalClient
 from checkoutsdk.orders import OrdersCaptureRequest
+import json
 
 
 class CaptureOrder(PayPalClient):
@@ -25,6 +26,8 @@ class CaptureOrder(PayPalClient):
             print "\tEmail Address: {}\n\tName: {}\n\tPhone Number: {}".format(response.result.payer.email_address,
                                                                            response.result.payer.name.given_name + " " + response.result.payer.name.surname,
                                                                            response.result.payer.phone.phone_number.national_number)
+            json_data = self.object_to_json(response.result)
+            print "json_data: ", json.dumps(json_data,indent=4)
         return response
 
 
