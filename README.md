@@ -43,52 +43,73 @@ client = PayPalHttpClient(environment)
 
 ### Creating an Order
 
-#### Code: 
+#### Code:
 ```python
 from checkoutsdk.orders import OrdersCreateRequest
+from braintreehttp import HttpError
 # Construct a request object and set desired parameters
 # Here, OrdersCreateRequest() creates a POST request to /v2/checkout/orders
 request = OrdersCreateRequest()
-request.request_body = ({
-                            "intent": "CAPTURE",
-                            "purchase_units": [
-                                {
-                                    "amount": {
-                                        "currency_code": "USD",
-                                        "value": "100.00"
-                                    }
-                                }
-                            ]
-                        })
+
+request.prefer('return=representation')
+
+request.request_body (
+    {
+        "intent": "CAPTURE",
+        "purchase_units": [
+            {
+                "amount": {
+                    "currency_code": "USD",
+                    "value": "100.00"
+                }
+            }
+        ]
+    }
+)
 
 try:
     # Call API with your client and get a response for your call
-    response = client.execute(request) 
-    
-    # If call returns body in response, you can get the deserialized version from the result attribute of the response
-    order = response.result
-    print response.result
+    response = client.execute(request)
+    print 'Order With Complete Payload:'
+    print 'Status Code:', response.status_code
+    print 'Status:', response.result.status
+    print 'Order ID:', response.result.id
+    print 'Intent:', response.result.intent
+    print 'Links:'
+    for link in response.result.links:
+        print('\t{}: {}\tCall Type: {}'.format(link.rel, link.href, link.method))
+        print 'Total Amount: {} {}'.format(response.result.purchase_units[0].amount.currency_code,
+        response.result.purchase_units[0].amount.value)
+        # If call returns body in response, you can get the deserialized version from the result attribute of the response
+        order = response.result
+        print response.result
 except IOError as ioe:
+    print ioe
     if isinstance(ioe, HttpError):
         # Something went wrong server-side
         print ioe.status_code
-        print ioe.headers["debug_id"]
-    else:
-        # Something went wrong client side
-        print ioe
 ```
 
 #### Example Output:
 ```
-Status Code:  201
-Status:  CREATED
-Order ID:  7F845507FB875171H
-Intent:  CAPTURE
+Order With Complete Payload:
+Status Code: 201
+Status: CREATED
+Order ID: 3MY95906MP2707106
+Intent: CAPTURE
 Links:
-	self: https://api.sandbox.paypal.com/v2/checkout/orders/7F845507FB875171H	Call Type: GET
-	approve: https://www.sandbox.paypal.com/checkoutnow?token=7F845507FB875171H	Call Type: GET
-	authorize: https://api.sandbox.paypal.com/v2/checkout/orders/7F845507FB875171H/authorize	Call Type: POST
-Gross Amount: USD 230.00
+	self: https://api.sandbox.paypal.com/v2/checkout/orders/3MY95906MP2707106	Call Type: GET
+Total Amount: USD 100.00
+<class 'braintreehttp.http_response.Result'>
+	approve: https://www.sandbox.paypal.com/checkoutnow?token=3MY95906MP2707106	Call Type: GET
+Total Amount: USD 100.00
+<class 'braintreehttp.http_response.Result'>
+	update: https://api.sandbox.paypal.com/v2/checkout/orders/3MY95906MP2707106	Call Type: PATCH
+Total Amount: USD 100.00
+<class 'braintreehttp.http_response.Result'>
+	capture: https://api.sandbox.paypal.com/v2/checkout/orders/3MY95906MP2707106/capture	Call Type: POST
+Total Amount: USD 100.00
+<class 'braintreehttp.http_response.Result'>
 ```
 
 ### Capturing an Order
@@ -104,7 +125,7 @@ request = OrdersCaptureRequest(order.id)
 try:
     # Call API with your client and get a response for your call
     response = client.execute(request)
-    
+
     # If call returns body in response, you can get the deserialized version from the result attribute of the response
     order = response.result
 except IOError as ioe:
@@ -122,7 +143,7 @@ except IOError as ioe:
 Status Code:  201
 Status:  COMPLETED
 Order ID:  7F845507FB875171H
-Links: 
+Links:
 	self: https://api.sandbox.paypal.com/v2/checkout/orders/70779998U8897342J	Call Type: GET
 Buyer:
 	Email Address: ganeshramc-buyer@live.com
