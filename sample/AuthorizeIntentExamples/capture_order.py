@@ -1,4 +1,4 @@
-from checkoutsdk.payments import AuthorizationsCaptureRequest
+from paypalcheckoutsdk.payments import AuthorizationsCaptureRequest
 from sample.paypal_client import PayPalClient
 import json
 

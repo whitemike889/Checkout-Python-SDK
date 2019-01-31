@@ -1,6 +1,6 @@
 import unittest
 import json
-from checkoutsdk.payments import AuthorizationsGetRequest
+from paypalcheckoutsdk.payments import AuthorizationsGetRequest
 from tests.test_harness import TestHarness
 
 class AuthorizationsGetTest(TestHarness):

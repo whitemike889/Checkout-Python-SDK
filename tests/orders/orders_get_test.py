@@ -1,5 +1,5 @@
 import unittest
-from checkoutsdk.orders import OrdersGetRequest
+from paypalcheckoutsdk.orders import OrdersGetRequest
 from tests.test_harness import TestHarness
 from tests.orders.orders_create_test import create_order
 

@@ -3,9 +3,9 @@ import platform
 import requests
 
 from braintreehttp import HttpClient
-from checkoutsdk.config import __version__
-from checkoutsdk.core.util import older_than_27
-from checkoutsdk.core import AccessTokenRequest, AccessToken, RefreshTokenRequest
+from paypalcheckoutsdk.config import __version__
+from paypalcheckoutsdk.core.util import older_than_27
+from paypalcheckoutsdk.core import AccessTokenRequest, AccessToken, RefreshTokenRequest
 
 
 USER_AGENT = "PayPalSDK/PayPal-Python-SDK %s (%s)" % \

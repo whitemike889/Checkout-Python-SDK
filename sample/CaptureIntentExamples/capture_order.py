@@ -1,5 +1,5 @@
 from sample import PayPalClient
-from checkoutsdk.orders import OrdersCaptureRequest
+from paypalcheckoutsdk.orders import OrdersCaptureRequest
 import json
 
 

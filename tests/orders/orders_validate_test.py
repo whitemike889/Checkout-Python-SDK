@@ -1,6 +1,6 @@
 import unittest
 import json
-from checkoutsdk.orders import OrdersValidateRequest
+from paypalcheckoutsdk.orders import OrdersValidateRequest
 from tests.test_harness import TestHarness
 
 class OrdersValidateTest(TestHarness):

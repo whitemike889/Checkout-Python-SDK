@@ -1,6 +1,6 @@
 import unittest
 import json
-from checkoutsdk.payments import AuthorizationsVoidRequest
+from paypalcheckoutsdk.payments import AuthorizationsVoidRequest
 from tests.test_harness import TestHarness
 
 class AuthorizationsVoidTest(TestHarness):

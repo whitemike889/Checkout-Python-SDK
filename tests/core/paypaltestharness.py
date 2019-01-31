@@ -1,7 +1,7 @@
 from braintreehttp.testutils import TestHarness
-from checkoutsdk.core.access_token import AccessToken
-from checkoutsdk.core.environment import PayPalEnvironment
-from checkoutsdk.core.access_token_request import AccessTokenRequest
+from paypalcheckoutsdk.core.access_token import AccessToken
+from paypalcheckoutsdk.core.environment import PayPalEnvironment
+from paypalcheckoutsdk.core.access_token_request import AccessTokenRequest
 
 OAUTH_PATH = "/v1/oauth2/token"
 OPENID_CONNECT_PATH = "/v1/identity/openidconnect/tokenservice"

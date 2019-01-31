@@ -1,5 +1,5 @@
 from sample import PayPalClient
-from checkoutsdk.payments import CapturesRefundRequest
+from paypalcheckoutsdk.payments import CapturesRefundRequest
 import json
 
 class RefundOrder(PayPalClient):

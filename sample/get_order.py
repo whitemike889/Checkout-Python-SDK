@@ -1,5 +1,5 @@
 from sample import PayPalClient
-from checkoutsdk.orders import OrdersGetRequest
+from paypalcheckoutsdk.orders import OrdersGetRequest
 from sample.CaptureIntentExamples.create_order import CreateOrder
 import json
  

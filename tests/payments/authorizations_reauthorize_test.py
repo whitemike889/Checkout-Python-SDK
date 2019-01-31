@@ -1,5 +1,5 @@
 import unittest
-from checkoutsdk.payments import AuthorizationsReauthorizeRequest
+from paypalcheckoutsdk.payments import AuthorizationsReauthorizeRequest
 from tests.test_harness import TestHarness
 
 class AuthorizationsReauthorizeTest(TestHarness):

@@ -1,5 +1,5 @@
 import unittest
-from checkoutsdk.orders import OrdersCaptureRequest
+from paypalcheckoutsdk.orders import OrdersCaptureRequest
 from tests.test_harness import TestHarness
 
 class OrdersCaptureTest(TestHarness):

@@ -1,6 +1,6 @@
 import unittest
 import json
-from checkoutsdk.payments import CapturesRefundRequest
+from paypalcheckoutsdk.payments import CapturesRefundRequest
 from tests.test_harness import TestHarness
 
 class CapturesRefundTest(TestHarness):
