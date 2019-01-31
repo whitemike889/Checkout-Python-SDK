@@ -1,3 +1,0 @@
-checkoutsdk
-sample
-tests

@@ -1,5 +1,5 @@
 import unittest
-from checkoutsdk.orders import OrdersAuthorizeRequest
+from paypalcheckoutsdk.orders import OrdersAuthorizeRequest
 from tests.test_harness import TestHarness
 
 class OrdersAuthorizeTest(TestHarness):

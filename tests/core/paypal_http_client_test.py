@@ -3,7 +3,7 @@ import unittest
 
 import responses
 
-from checkoutsdk.core import PayPalHttpClient, RefreshTokenRequest
+from paypalcheckoutsdk.core import PayPalHttpClient, RefreshTokenRequest
 from tests.core.paypaltestharness import PayPalTestHarness
 
 

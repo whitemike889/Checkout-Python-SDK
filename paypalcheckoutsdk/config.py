@@ -1,6 +1,6 @@
-__version__ = "2.0.0rc2"
+__version__ = "1.0.0"
 __pypi_username__ = "paypal"
-__pypi_packagename__ = "paypalcheckoutsdk"
+__pypi_packagename__ = "paypal-checkoutserversdk"
 __github_username__ = "paypal"
 __github_reponame__ = "Checkout-Python-SDK"
 

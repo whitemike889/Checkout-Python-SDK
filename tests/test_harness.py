@@ -1,5 +1,5 @@
 import unittest
-from checkoutsdk.core import PayPalHttpClient, SandboxEnvironment
+from paypalcheckoutsdk.core import PayPalHttpClient, SandboxEnvironment
 
 
 class TestHarness(unittest.TestCase):

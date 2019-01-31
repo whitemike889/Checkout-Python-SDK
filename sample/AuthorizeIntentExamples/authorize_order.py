@@ -1,5 +1,5 @@
 from sample import PayPalClient
-from checkoutsdk.orders import OrdersAuthorizeRequest
+from paypalcheckoutsdk.orders import OrdersAuthorizeRequest
 import json
 
 class AuthorizeOrder(PayPalClient):

@@ -1,11 +1,11 @@
-from checkoutsdk.core import PayPalHttpClient, SandboxEnvironment
+from paypalcheckoutsdk.core import PayPalHttpClient, SandboxEnvironment
 
 import sys
 
 class PayPalClient:
     def __init__(self):
-        self.client_id = "AVNCVvV9oQ7qee5O8OW4LSngEeU1dI7lJAGCk91E_bjrXF2LXB2TK2ICXQuGtpcYSqs4mz1BMNQWuso1"
-        self.client_secret = "EDQzd81k-1z2thZw6typSPOTEjxC_QbJh6IithFQuXdRFc7BjVht5rQapPiTaFt5RC-HCa1ir6mi-H5l"
+        self.client_id = "<<PAYPAL-CLIENT-ID>>"
+        self.client_secret = "<<PAYPAL-CLIENT-SECRET>>"
         
         """Setting up and Returns PayPal SDK environment with PayPal Access credentials.
            For demo purpose, we are using SandboxEnvironment. In production this will be

@@ -1,4 +1,4 @@
-from checkoutsdk.orders import OrdersPatchRequest, OrdersGetRequest
+from paypalcheckoutsdk.orders import OrdersPatchRequest, OrdersGetRequest
 from sample import PayPalClient
 from sample.AuthorizeIntentExamples import CreateOrder
 import json

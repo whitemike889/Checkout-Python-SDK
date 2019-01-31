@@ -1,5 +1,5 @@
 from sample import PayPalClient
-from checkoutsdk.orders import OrdersCreateRequest
+from paypalcheckoutsdk.orders import OrdersCreateRequest
 from braintreehttp.serializers.json_serializer import Json
 import json
 
