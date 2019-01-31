@@ -7,7 +7,7 @@ setup(
     name="paypal-checkout-serversdk",
     version="1.0.6",
     author="https://developer.paypal.com",
-    author_email="rpadmanathan@paypal.com",
+    author_email="dl-paypal-checkout-api@paypal.com",
     description="Python Rest SDK for PayPal Checkout",
     long_description="Python Rest SDK for PayPal Checkout",
     long_description_content_type="text/markdown",
