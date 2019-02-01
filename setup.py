@@ -5,7 +5,7 @@ from setuptools import setup, find_packages;
 
 setup(
     name="paypal-checkout-serversdk",
-    version="1.0.6",
+    version="1.0.0",
     author="https://developer.paypal.com",
     author_email="dl-paypal-checkout-api@paypal.com",
     description="Python Rest SDK for PayPal Checkout",
