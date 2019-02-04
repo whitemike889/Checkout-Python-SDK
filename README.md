@@ -28,7 +28,7 @@ BraintreeHttp can be found at https://pypi.org/project/braintreehttp/
 Get client ID and client secret by going to https://developer.paypal.com/developer/applications and generating a REST API app. Get <b>Client ID</b> and <b>Secret</b> from there.
 
 ```python
-from checkoutsdk.core import PayPalHttpClient, SandboxEnvironment
+from paypalcheckoutsdk.core import PayPalHttpClient, SandboxEnvironment
 
 
 # Creating Access Token for Sandbox
