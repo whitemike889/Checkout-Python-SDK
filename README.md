@@ -40,7 +40,7 @@ client = PayPalHttpClient(environment)
 
 #### Code:
 ```python
-from checkoutsdk.orders import OrdersCreateRequest
+from paypalcheckoutsdk.orders import OrdersCreateRequest
 from braintreehttp import HttpError
 # Construct a request object and set desired parameters
 # Here, OrdersCreateRequest() creates a POST request to /v2/checkout/orders
@@ -77,7 +77,7 @@ try:
         response.result.purchase_units[0].amount.value)
         # If call returns body in response, you can get the deserialized version from the result attribute of the response
         order = response.result
-        print response.result
+        print order
 except IOError as ioe:
     print ioe
     if isinstance(ioe, HttpError):
@@ -112,22 +112,23 @@ After approving order above using `approve` link
 
 #### Code:
 ```python
-from checkoutsdk.orders import OrdersCaptureRequest
+from paypalcheckoutsdk.orders import OrdersCaptureRequest
 # Here, OrdersCaptureRequest() creates a POST request to /v2/checkout/orders
-# order.id gives the orderId of the order created above
-request = OrdersCaptureRequest(order.id)
+# Replace APPROVED-ORDER-ID with the actual approved order id.
+request = OrdersCaptureRequest("APPROVED-ORDER-ID")
 
 try:
     # Call API with your client and get a response for your call
     response = client.execute(request)
 
     # If call returns body in response, you can get the deserialized version from the result attribute of the response
-    order = response.result
+    order = response.result.id
 except IOError as ioe:
     if isinstance(ioe, HttpError):
         # Something went wrong server-side
         print ioe.status_code
-        print ioe.headers["debug_id"]
+        print ioe.headers
+	print ioe
     else:
         # Something went wrong client side
         print ioe
