@@ -19,6 +19,12 @@ BraintreeHttp can be found at https://pypi.org/project/braintreehttp/
 
 ## Usage
 
+### Binaries
+
+It is not mandatory to fork this repository for using the PayPal SDK. You can refer [PayPal Checkout Server SDK](https://developer.paypal.com/docs/checkout/reference/server-integration) for configuring and working with SDK without forking this code.
+
+For contirbuting or referrring the samples, You can fork/refer this repository. 
+
 ### Setting up credentials
 Get client ID and client secret by going to https://developer.paypal.com/developer/applications and generating a REST API app. Get <b>Client ID</b> and <b>Secret</b> from there.
 
@@ -165,3 +171,5 @@ You may use the client id and secret above for demonstration purposes.
 You can start off by trying out [creating and capturing an order](/sample/CaptureIntentExamples/run_all.py)
 
 To try out different samples for both create and authorize intent check [this link](/sample)
+
+Note: Update the `paypal_client.py` with your sandbox client credentials or pass your client credentials as environment variable whie executing the samples.
