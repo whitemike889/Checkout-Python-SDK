@@ -174,3 +174,7 @@ You can start off by trying out [creating and capturing an order](/sample/Captur
 To try out different samples for both create and authorize intent check [this link](/sample)
 
 Note: Update the `paypal_client.py` with your sandbox client credentials or pass your client credentials as environment variable whie executing the samples.
+
+
+## License
+Code released under [SDK LICENSE](LICENSE)  
