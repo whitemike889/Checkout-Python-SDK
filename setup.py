@@ -16,7 +16,7 @@ setup(
     classifiers=[
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
+        "License :: SEE LICENSE IN https://github.com/paypal/Checkout-Python-SDK/blob/master/LICENSE",
         "Operating System :: OS Independent",
     ],
     install_requires=["braintreehttp"],

@@ -2,10 +2,11 @@
 
 ![Home Image](homepage.jpg)
 
-__Welcome to PayPal Python SDK__. This repository contains PayPal's Python SDK and samples for REST API.
+__Welcome to PayPal Python SDK__. This repository contains PayPal's Python SDK and samples for [v2/checkout/orders](https://developer.paypal.com/docs/api/orders/v2/) and [v2/payments](https://developer.paypal.com/docs/api/payments/v2/) APIs.
 
-This is a part of the next major PayPal SDK. It includes a simplified interface to only provide simple model objects and blueprints for HTTP calls. This repo currently contains functionality for PayPal Checkout APIs which includes Orders V2 and Payments V2.
+This is a part of the next major PayPal SDK. It includes a simplified interface to only provide simple model objects and blueprints for HTTP calls. This repo currently contains functionality for PayPal Checkout APIs which includes [Orders V2](https://developer.paypal.com/docs/api/orders/v2/) and [Payments V2](https://developer.paypal.com/docs/api/payments/v2/).
 
+Please refer to the [PayPal Checkout Integration Guide](https://developer.paypal.com/docs/checkout/) for more information. Also refer to [Setup your SDK](https://developer.paypal.com/docs/checkout/reference/server-integration/setup-sdk/) for additional information about setting up the SDK's. 
 
 ## Prerequisites
 
@@ -173,3 +174,7 @@ You can start off by trying out [creating and capturing an order](/sample/Captur
 To try out different samples for both create and authorize intent check [this link](/sample)
 
 Note: Update the `paypal_client.py` with your sandbox client credentials or pass your client credentials as environment variable whie executing the samples.
+
+
+## License
+Code released under [SDK LICENSE](LICENSE)  
