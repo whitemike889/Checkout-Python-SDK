@@ -149,7 +149,7 @@ Order ID:  7F845507FB875171H
 Links:
 	self: https://api.sandbox.paypal.com/v2/checkout/orders/70779998U8897342J	Call Type: GET
 Buyer:
-	Email Address: ganeshramc-buyer@live.com
+	Email Address: test-buyer@live.com
 	Name: test buyer
 	Phone Number: 408-411-2134
 ```
@@ -160,12 +160,6 @@ To run integration tests using your client id and secret, clone this repository 
 $ pip install nose # if not already installed
 $ PAYPAL_CLIENT_ID=your_client_id PAYPAL_CLIENT_SECRET=your_client_secret nosetests --exe
 ```
-
-You may use the client id and secret above for demonstration purposes.
-
-
-*NOTE*: This SDK is still in beta, is subject to change, and should not be used in production.
-
 
 ## Samples
 
