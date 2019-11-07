@@ -19,5 +19,5 @@ setup(
         "License :: SEE LICENSE IN https://github.com/paypal/Checkout-Python-SDK/blob/master/LICENSE",
         "Operating System :: OS Independent",
     ],
-    install_requires=["braintreehttp"],
+    install_requires=["paypalhttp"],
 )

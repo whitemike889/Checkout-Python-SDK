@@ -1,7 +1,7 @@
 from sample import PayPalClient
 import json
 from paypalcheckoutsdk.orders import OrdersCreateRequest
-from braintreehttp.http_error import HttpError
+from paypalhttp.http_error import HttpError
 
 
 class CreateError(PayPalClient):

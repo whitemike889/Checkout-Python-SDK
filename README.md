@@ -16,7 +16,7 @@ An environment which supports TLS 1.2 (see the TLS-update site for more informat
 
 ## Requirements
 
-BraintreeHttp can be found at https://pypi.org/project/braintreehttp/
+PayPalHttp can be found at https://pypi.org/project/paypalhttp/
 
 ## Usage
 
@@ -24,7 +24,7 @@ BraintreeHttp can be found at https://pypi.org/project/braintreehttp/
 
 It is not mandatory to fork this repository for using the PayPal SDK. You can refer [PayPal Checkout Server SDK](https://developer.paypal.com/docs/checkout/reference/server-integration) for configuring and working with SDK without forking this code.
 
-For contirbuting or referrring the samples, You can fork/refer this repository. 
+For contributing or referring the samples, You can fork/refer this repository. 
 
 ### Setting up credentials
 Get client ID and client secret by going to https://developer.paypal.com/developer/applications and generating a REST API app. Get <b>Client ID</b> and <b>Secret</b> from there.
@@ -48,7 +48,7 @@ client = PayPalHttpClient(environment)
 #### Code:
 ```python
 from paypalcheckoutsdk.orders import OrdersCreateRequest
-from braintreehttp import HttpError
+from paypalhttp import HttpError
 # Construct a request object and set desired parameters
 # Here, OrdersCreateRequest() creates a POST request to /v2/checkout/orders
 request = OrdersCreateRequest()
@@ -102,16 +102,16 @@ Intent: CAPTURE
 Links:
 	self: https://api.sandbox.paypal.com/v2/checkout/orders/3MY95906MP2707106	Call Type: GET
 Total Amount: USD 100.00
-<class 'braintreehttp.http_response.Result'>
+<class 'paypalhttp.http_response.Result'>
 	approve: https://www.sandbox.paypal.com/checkoutnow?token=3MY95906MP2707106	Call Type: GET
 Total Amount: USD 100.00
-<class 'braintreehttp.http_response.Result'>
+<class 'paypalhttp.http_response.Result'>
 	update: https://api.sandbox.paypal.com/v2/checkout/orders/3MY95906MP2707106	Call Type: PATCH
 Total Amount: USD 100.00
-<class 'braintreehttp.http_response.Result'>
+<class 'paypalhttp.http_response.Result'>
 	capture: https://api.sandbox.paypal.com/v2/checkout/orders/3MY95906MP2707106/capture	Call Type: POST
 Total Amount: USD 100.00
-<class 'braintreehttp.http_response.Result'>
+<class 'paypalhttp.http_response.Result'>
 ```
 
 ### Capturing an Order

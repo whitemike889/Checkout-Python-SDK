@@ -1,6 +1,6 @@
 import base64
 
-from braintreehttp import Environment
+from paypalhttp import Environment
 
 
 class PayPalEnvironment(Environment):
@@ -24,7 +24,7 @@ class SandboxEnvironment(PayPalEnvironment):
 
     def __init__(self, client_id, client_secret):
         super(SandboxEnvironment, self).__init__(client_id,
-                client_secret, 
+                client_secret,
                 PayPalEnvironment.SANDBOX_API_URL,
                 PayPalEnvironment.SANDBOX_WEB_URL)
 
@@ -32,7 +32,7 @@ class SandboxEnvironment(PayPalEnvironment):
 class LiveEnvironment(PayPalEnvironment):
 
     def __init__(self, client_id, client_secret):
-        super(LiveEnvironment, self).__init__(client_id, 
-                client_secret, 
+        super(LiveEnvironment, self).__init__(client_id,
+                client_secret,
                 PayPalEnvironment.LIVE_API_URL,
                 PayPalEnvironment.LIVE_WEB_URL)
