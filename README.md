@@ -16,7 +16,7 @@ An environment which supports TLS 1.2 (see the TLS-update site for more informat
 
 ## Requirements
 
-BraintreeHttp can be found at https://pypi.org/project/braintreehttp/
+PayPalHttp can be found at https://pypi.org/project/paypalhttp/
 
 ## Usage
 
@@ -24,7 +24,7 @@ BraintreeHttp can be found at https://pypi.org/project/braintreehttp/
 
 It is not mandatory to fork this repository for using the PayPal SDK. You can refer [PayPal Checkout Server SDK](https://developer.paypal.com/docs/checkout/reference/server-integration) for configuring and working with SDK without forking this code.
 
-For contirbuting or referrring the samples, You can fork/refer this repository. 
+For contributing or referring the samples, You can fork/refer this repository. 
 
 ### Setting up credentials
 Get client ID and client secret by going to https://developer.paypal.com/developer/applications and generating a REST API app. Get <b>Client ID</b> and <b>Secret</b> from there.
@@ -48,7 +48,7 @@ client = PayPalHttpClient(environment)
 #### Code:
 ```python
 from paypalcheckoutsdk.orders import OrdersCreateRequest
-from braintreehttp import HttpError
+from paypalhttp import HttpError
 # Construct a request object and set desired parameters
 # Here, OrdersCreateRequest() creates a POST request to /v2/checkout/orders
 request = OrdersCreateRequest()
@@ -102,16 +102,16 @@ Intent: CAPTURE
 Links:
 	self: https://api.sandbox.paypal.com/v2/checkout/orders/3MY95906MP2707106	Call Type: GET
 Total Amount: USD 100.00
-<class 'braintreehttp.http_response.Result'>
+<class 'paypalhttp.http_response.Result'>
 	approve: https://www.sandbox.paypal.com/checkoutnow?token=3MY95906MP2707106	Call Type: GET
 Total Amount: USD 100.00
-<class 'braintreehttp.http_response.Result'>
+<class 'paypalhttp.http_response.Result'>
 	update: https://api.sandbox.paypal.com/v2/checkout/orders/3MY95906MP2707106	Call Type: PATCH
 Total Amount: USD 100.00
-<class 'braintreehttp.http_response.Result'>
+<class 'paypalhttp.http_response.Result'>
 	capture: https://api.sandbox.paypal.com/v2/checkout/orders/3MY95906MP2707106/capture	Call Type: POST
 Total Amount: USD 100.00
-<class 'braintreehttp.http_response.Result'>
+<class 'paypalhttp.http_response.Result'>
 ```
 
 ### Capturing an Order
@@ -149,7 +149,7 @@ Order ID:  7F845507FB875171H
 Links:
 	self: https://api.sandbox.paypal.com/v2/checkout/orders/70779998U8897342J	Call Type: GET
 Buyer:
-	Email Address: ganeshramc-buyer@live.com
+	Email Address: test-buyer@live.com
 	Name: test buyer
 	Phone Number: 408-411-2134
 ```
@@ -161,12 +161,6 @@ $ pip install nose # if not already installed
 $ PAYPAL_CLIENT_ID=your_client_id PAYPAL_CLIENT_SECRET=your_client_secret nosetests --exe
 ```
 
-You may use the client id and secret above for demonstration purposes.
-
-
-*NOTE*: This SDK is still in beta, is subject to change, and should not be used in production.
-
-
 ## Samples
 
 You can start off by trying out [creating and capturing an order](/sample/CaptureIntentExamples/run_all.py)
@@ -174,3 +168,7 @@ You can start off by trying out [creating and capturing an order](/sample/Captur
 To try out different samples for both create and authorize intent check [this link](/sample)
 
 Note: Update the `paypal_client.py` with your sandbox client credentials or pass your client credentials as environment variable whie executing the samples.
+
+
+## License
+Code released under [SDK LICENSE](LICENSE)  

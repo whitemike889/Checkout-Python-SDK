@@ -1,4 +1,4 @@
-from braintreehttp.testutils import TestHarness
+from paypalhttp.testutils import TestHarness
 from paypalcheckoutsdk.core.access_token import AccessToken
 from paypalcheckoutsdk.core.environment import PayPalEnvironment
 from paypalcheckoutsdk.core.access_token_request import AccessTokenRequest
