@@ -27,7 +27,7 @@ class PayPalHttpClient(HttpClient):
 
     def __call__(self, request):
         request.headers["sdk_name"] = "Checkout SDK"
-        request.headers["sdk_version"] = "2.0.0-rc2"
+        request.headers["sdk_version"] = "1.0.1"
         request.headers["sdk_tech_stack"] = "Python" + platform.python_version()
         request.headers["api_integration_type"] = "PAYPALSDK"
 
