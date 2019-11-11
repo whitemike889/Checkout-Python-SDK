@@ -1,11 +1,11 @@
 from sample import PayPalClient
 from paypalcheckoutsdk.orders import OrdersCreateRequest
-from braintreehttp.serializers.json_serializer import Json
+from paypalhttp.serializers.json_serializer import Json
 import json
 
 
 class CreateOrder(PayPalClient):
-    
+
     """Setting up the JSON request body for creating the Order. The Intent in the
         request body should be set as "CAPTURE" for capture intent flow."""
 

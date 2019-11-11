@@ -2,13 +2,13 @@ import ssl
 import platform
 import requests
 
-from braintreehttp import HttpClient
+from paypalhttp import HttpClient
 from paypalcheckoutsdk.config import __version__
 from paypalcheckoutsdk.core.util import older_than_27
 from paypalcheckoutsdk.core import AccessTokenRequest, AccessToken, RefreshTokenRequest
 
 
-USER_AGENT = "PayPalSDK/PayPal-Python-SDK %s (%s)" % \
+USER_AGENT = "PayPalSDK/Checkout-Python-SDK %s (%s)" % \
              (__version__, "requests %s; python %s; %s" %
               (requests.__version__, platform.python_version(), "" if older_than_27() else ssl.OPENSSL_VERSION))
 
@@ -27,7 +27,7 @@ class PayPalHttpClient(HttpClient):
 
     def __call__(self, request):
         request.headers["sdk_name"] = "Checkout SDK"
-        request.headers["sdk_version"] = "2.0.0-rc2"
+        request.headers["sdk_version"] = "1.0.1"
         request.headers["sdk_tech_stack"] = "Python" + platform.python_version()
         request.headers["api_integration_type"] = "PAYPALSDK"
 
